@@ -1,4 +1,3 @@
-%Robotics Assignment 4 simplification equations
 %C. Michael Collins
 syms x3 x4;
 
