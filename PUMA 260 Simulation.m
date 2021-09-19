@@ -1,9 +1,7 @@
-%Question 1 for Simulation of PUMA 260 
+Simulation of PUMA 260 
 
 %Name: C. Michael Collins
-%STN: 201222718
 %Date Constructed: July 4th, 2020 [INDEPENDENCE DAY!]
-%For: Dr. George Mann
 
 %L = Link(theta(rad), d (cm), a (cm), alpha (rad))
 %PUMA has 6DOF, so 6 links
@@ -16,7 +14,8 @@ L(5) = Link([0 0 0 -pi/2]);
 L(6) = Link([0 5 0 0]);
 
 %No offset required for home position
-
+%Safe Planar3d in simulation and assign
+ 
 planar3d = SerialLink(L);
 planar3d.name = 'PUMA PRIDE!';
 
@@ -24,14 +23,11 @@ qz = [0 0 0 0 0 0]; %angles of theta for each link in home position
 
 %Generated plot for home position
 
-%Note that the simulation plots do not save 
-%for individual figures, so whichever simulation
-%you want to view, comment out the other two.
+%Note that the simulation plots do not save for individual figures, so whichever simulation you want to view, comment out the other two.
 
 figure (1)
 planar3d.plot(qz);
 
-%Question 2 for Simulation
 %Forward Kinematics
 
 q2 = [pi/3 pi/24 -pi/4 pi/4 pi/4 pi/4]; %Case 2 in Rads
@@ -47,10 +43,7 @@ T_3 = planar3d.fkine(q3); %Matrix for Case 3
 
 %X-Position versus Time plot generated from Simulink values
 
-%It is crucial to this code that struct values are obtained via
-%Simulink with whatever name they have and by the model found in
-%the figure in the report so it can be saved and added directly
-% to the workspace. 
+%NEXT FIGURE COMING
 
 %figure (2)
 %plot(X.time, X.signals.values)
@@ -65,24 +58,11 @@ T_3 = planar3d.fkine(q3); %Matrix for Case 3
 %ylabel('Y-axis (cm)')
 %title("Y-axis Coordinate Motion Over Time")
 
-%Question 3: Inverse Kinematics
+%Inverse Kinematics
 %Using code provided for calculating Inverse Kinematics
-
-%For the purposes of testing the inverse kinematics without
-%the code below, another line will be added to generate
-%a student resulted theta values. Ideally, it should match 
-%one of the 32 solutions provided and then inverse back to 
-%the transformation matrix of Case 2. 
 
 q2_i = planar3d.ikine(T_2); %to get one of the 32 solutions
 T_i = planar3d.fkine(q2_i); %should get back T_2
-
-%-----Inverse Kinematic for puma 260 -----%%%%%%
-%-----Trung Nguyen (tn0432@mun.ca)
-%-Considering the wrist centre position, formulate the inverse kinematics
-%-problem to determine the joint variables.
-% clear all;
-% clc;
 
 %Parameter of links
 d1=35; %a
@@ -93,7 +73,6 @@ a2=20; % c
 a3=0; % 0 for PUMA 260
 
 %Define the hand coordinates with respect to base 0T6
-%%%%%%===== Put your matrix 0T6 in here =====%%%%%
 % Using 0T6 for [60 15 -45 45 45 45]
  OT6 = [ 0.8333 -0.3639 -0.4161 18.2516;
         -0.2638 -0.9233 0.2793 26.6127;
