@@ -1,6 +1,7 @@
-%Robotics Assignment 4 simplification equations
 %C. Michael Collins
 syms x1 x2 x3 d3 d a2 a3 m1 m2 m3 l; 
+
+%All values can be adjusted based on requirements 
 
 %x1 = Joint Variable Theta 1
 %x2 = Joint Variable Theta 2
